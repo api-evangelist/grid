@@ -1,0 +1,14 @@
+{
+  "repo": "grid",
+  "feeds": [
+    {
+      "source": "https://help.saasgrid.com/articles/4405613168-getting-your-data-into-saasgrid",
+      "feed_url": "https://help.saasgrid.com/articles/4405613168-getting-your-data-into-saasgrid",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-25T15:00:33Z"
+}

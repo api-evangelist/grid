@@ -1,0 +1,126 @@
+---
+generated: '2026-07-19'
+method: searched
+source: https://help.saasgrid.com/llms.txt
+---
+# Grid Knowledge Base
+
+
+## Getting Started
+
+- [Getting your Data into Grid](https://help.saasgrid.com/articles/4405613168-getting-your-data-into-saasgrid)
+- [Navigating Grid](https://help.saasgrid.com/articles/6536679903-navigating-saasgrid)
+
+## Getting Data into Grid
+
+- [Custom Attributes](https://help.saasgrid.com/articles/5413161511-custom-attributes)
+- [Additional Metrics](https://help.saasgrid.com/articles/5315099599-additional-metrics)
+- [Retroactive Changes](https://help.saasgrid.com/articles/3621656676-retroactive-changes)
+
+### Setting up Data Sources
+
+- [Configuring a Workspace](https://help.saasgrid.com/articles/5067118884-configuring-a-workspace)
+- [Connect Netsuite to Grid](https://help.saasgrid.com/articles/7203699248-connect-netsuite-to-saasgrid)
+- [Connect QuickBooks to Grid](https://help.saasgrid.com/articles/3590414770-connect-quickbooks-to-saasgrid)
+- [Connect Sage Intacct to Grid](https://help.saasgrid.com/articles/4437605908-connect-sage-intacct-to-saasgrid)
+- [Connect Salesforce to Grid](https://help.saasgrid.com/articles/6412174647-connect-salesforce-to-saasgrid)
+- [Connect HubSpot to Grid](https://help.saasgrid.com/articles/4120731560-connect-hubspot-to-saasgrid)
+- [Connect Xero to Grid](https://help.saasgrid.com/articles/5816302327-connect-xero-to-saasgrid)
+
+### Files (Excel or Sheets)
+
+- [Uploading a File Template](https://help.saasgrid.com/articles/2153644623-uploading-a-file-template)
+- [MRR Waterfall Template](https://help.saasgrid.com/articles/4682774014-mrr-waterfall-template)
+- [Transaction Revenue Template](https://help.saasgrid.com/articles/3211093927-transaction-revenue-template)
+
+### CRM
+
+- [Overview of CRMs](https://help.saasgrid.com/articles/7695441986-overview-of-crms)
+- [CRM Issue Types](https://help.saasgrid.com/articles/1958846479-crm-issue-types)
+- [CRM Rules Flow - Opportunities / Deals (Step 1)](https://help.saasgrid.com/articles/1880452377-crm-rules-flow-opportunities-deals-step-1)
+- [CRM Rules Flow - Dates (Step 2)](https://help.saasgrid.com/articles/8064116137-crm-rules-flow-dates-step-2)
+- [Rules Flow - Miscellaneous (Step 3)](https://help.saasgrid.com/articles/6886963050-rules-flow-miscellaneous-step-3)
+- [Rules Flow - Segments and Filters (Step 4)](https://help.saasgrid.com/articles/9006715958-rules-flow-segments-and-filters-step-4)
+- [Setting up Orders ](https://help.saasgrid.com/articles/1640717515-orders)
+
+### Billing
+
+- [QuickBooks (Billing)](https://help.saasgrid.com/articles/2301993478-quickbooks-billing)
+- [Netsuite (Billing)](https://help.saasgrid.com/articles/6731900298-netsuite-billing)
+- [Xero (Billing)](https://help.saasgrid.com/articles/1666390821-xero-billing)
+- [SageIntacct (Billing)](https://help.saasgrid.com/articles/8673459482-sageintacct-billing)
+- [Configuring Numeral Sales Tax in Grid](https://help.saasgrid.com/articles/3518399150-configuring-numeral-sales-tax-in-grid)
+
+#### Stripe
+
+- [Setting Up Stripe in Grid](https://help.saasgrid.com/articles/7866490724-setting-up-stripe-in-saasgrid)
+- [Aligning Stripe and Grid](https://help.saasgrid.com/articles/9690758673-aligning-stripe-and-saasgrid)
+- [Subscriptions vs Invoices](https://help.saasgrid.com/articles/3878235271-subscriptions-vs-invoices)
+- [Append Custom Attributes to Customers from Stripe](https://help.saasgrid.com/articles/5081388942-append-custom-attributes-to-customers-from-stripe)
+
+### Accounting
+
+- [Expense Segments](https://help.saasgrid.com/articles/7419855907-expense-segments)
+- [Rules Flow for Accounting Data](https://help.saasgrid.com/articles/9465351217-rules-flow-for-accounting-data)
+
+### Headcount
+
+- [How to upload Headcount Data](https://help.saasgrid.com/articles/2712469838-how-to-upload-headcount-data)
+
+## Dashboards
+
+- [Creating and Editing Dashboards (V1)](https://help.saasgrid.com/articles/2565925834-creating-and-editing-dashboards-v1)
+- [Sharing your Dashboard](https://help.saasgrid.com/articles/5238428811-sharing-your-dashboard)
+- [Configuring the Overview](https://help.saasgrid.com/articles/4232184169-configuring-the-overview)
+- [Dashboard Lenses](https://help.saasgrid.com/articles/7872390082-dashboard-lenses)
+- [Creating and Editing Dashboards (V2)](https://help.saasgrid.com/articles/1496687368-creating-and-editing-dashboards-v2)
+
+## Reports
+
+- [Metrics](https://help.saasgrid.com/articles/6370104512-metrics)
+- [Segments](https://help.saasgrid.com/articles/3147319648-segments)
+- [Metric Groupings](https://help.saasgrid.com/articles/7057654051-metric-groupings)
+- [Stacking Metrics](https://help.saasgrid.com/articles/2349419475-stacking-metrics)
+- [Custom Attribute Metrics](https://help.saasgrid.com/articles/9974018539-custom-attribute-metrics)
+- [Custom Metrics](https://help.saasgrid.com/articles/4417857839-custom-metrics)
+- [Data Filters](https://help.saasgrid.com/articles/8279567445-data-filters)
+- [Formula Breakdowns](https://help.saasgrid.com/articles/7191970674-formula-breakdowns)
+
+### Reports
+
+- [Creating and Editing Reports](https://help.saasgrid.com/articles/4811365899-creating-and-editing-reports)
+
+### Charts
+
+- [Creating and Editing Charts](https://help.saasgrid.com/articles/4566131946-creating-and-editing-charts)
+
+### Plans
+
+- [Creating & Editing Plans](https://help.saasgrid.com/articles/4910259599-creating-editing-plans)
+- [Creating and Editing Plans (V2)](https://help.saasgrid.com/articles/9423590697-creating-plans-v2)
+
+### Metric Settings
+
+- [Contracted ARR](https://help.saasgrid.com/articles/4274580879-contracted-arr)
+- [Revenue Recognition](https://help.saasgrid.com/articles/8721046035-revenue-recognition)
+- [Bookings Baseline](https://help.saasgrid.com/articles/1253880707-bookings-baseline)
+- [FX Adjustments and Movements](https://help.saasgrid.com/articles/6474303151-fx-adjustments-and-movements)
+- [Forecast Mode](https://help.saasgrid.com/articles/5844837027-forecast-mode)
+
+## User Management
+
+- [Inviting Users to Grid](https://help.saasgrid.com/articles/8303539837-inviting-users-to-saasgrid)
+- [Creating Multiple Organizations](https://help.saasgrid.com/articles/7310845425-creating-multiple-organizations)
+- [User Roles](https://help.saasgrid.com/articles/7313064116-user-roles)
+- [Setting up SSO for Grid](https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid)
+
+## AI Analyst
+
+- [Using AI Analyst](https://help.saasgrid.com/articles/3992929051-using-ai-analyst)
+
+## Workflows
+
+- [Merging Customers](https://help.saasgrid.com/articles/8535120385-merging-customers)
+- [Pushing Data to CRM](https://help.saasgrid.com/articles/6254456705-pushing-data-to-crm)
+- [Digests](https://help.saasgrid.com/articles/9295016651-digests)
+- [Connect to Grid MCP](https://help.saasgrid.com/articles/5945378492-grid-mcp)

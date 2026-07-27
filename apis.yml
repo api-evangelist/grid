@@ -1,9 +1,25 @@
 aid: grid
 name: Grid
-description: 'Grid is a company surfaced as a portfolio company of craft-ventures, kindred-ventures, obvious-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: infrastructure. This profile
-  is a lead awaiting the enrichment pipeline.'
+description: 'Grid (formerly SaaSGrid) is a revenue operations and financial platform that gives
+  SaaS finance teams, CFOs, and RevOps a single source of truth for pipeline, billing, ARR,
+  retention, revenue, and cash. It connects CRMs, billing systems, and ERPs — including Salesforce,
+  HubSpot, NetSuite, QuickBooks, Sage Intacct, and Xero — to automate invoicing and reconciliation,
+  produce real-time ARR, NDR, and churn reporting, and power revenue forecasting and scenario
+  planning inside shareable dashboards. Surfaced as a portfolio company of craft-ventures,
+  kindred-ventures, and obvious-ventures.'
 url: https://raw.githubusercontent.com/api-evangelist/grid/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://app.saasgrid.com/apple-touch-icon.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -14,10 +30,16 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Infrastructure
+- Revenue Operations
+- SaaS Metrics
+- Billing
+- Forecasting
+- Financial Reporting
+- FinOps
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -27,3 +49,30 @@ maintainers:
 common:
 - type: Website
   url: https://withgrid.com
+- type: Documentation
+  url: https://help.saasgrid.com/
+- type: Support
+  url: https://help.saasgrid.com/
+- type: GettingStarted
+  url: https://help.saasgrid.com/articles/4405613168-getting-your-data-into-saasgrid
+- type: Blog
+  url: https://www.withgrid.com/blog
+- type: Pricing
+  url: https://www.withgrid.com/pricing
+- type: SignUp
+  url: https://app.withgrid.com/register
+- type: Login
+  url: https://app.withgrid.com
+- type: TermsOfService
+  url: https://www.withgrid.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.withgrid.com/privacy-policy
+- type: LLMsTxt
+  url: llms/grid-llms.txt
+- type: DomainSecurity
+  url: security/grid-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
