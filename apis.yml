@@ -9,15 +9,17 @@ description: 'Grid (formerly SaaSGrid) is a revenue operations and financial pla
   kindred-ventures, and obvious-ventures.'
 url: https://raw.githubusercontent.com/api-evangelist/grid/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: freemium
+  onboarding: self-serve
   trial: false
-  try_now: false
+  try_now: true
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-08-13'
   method: derived
 image: https://app.saasgrid.com/apple-touch-icon.png
 x-type: company
@@ -30,7 +32,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 tags:
 - Company
 - Infrastructure
@@ -71,8 +73,27 @@ common:
   url: llms/grid-llms.txt
 - type: DomainSecurity
   url: security/grid-domain-security.yml
+- type: GitHubOrganization
+  url: https://github.com/SaaSGrid
+- type: MCPServer
+  url: mcp/grid-mcp.yml
+- type: Authentication
+  url: authentication/grid-authentication.yml
+- type: Conformance
+  url: conformance/grid-conformance.yml
+- type: Compliance
+  url: security/grid-trust-center.yml
+- type: Plans
+  url: plans/grid-plans-pricing.yml
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 8
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Contract discovery found no OpenAPI/GraphQL/AsyncAPI on any Grid host, but did find a
+    real first-party remote MCP server documented at
+    https://help.saasgrid.com/articles/5945378492-grid-mcp — Grid's only programmatic
+    surface. No WellKnown, Security, VulnerabilityDisclosure, RateLimits, SDKs or AgentCard
+    pointer is emitted: those probes returned honest zeroes and the artifacts recording
+    them are deliberately left unwired.
