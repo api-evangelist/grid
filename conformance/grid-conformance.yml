@@ -1,0 +1,131 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://help.saasgrid.com/articles/5945378492-grid-mcp +
+  https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid +
+  https://www.withgrid.com/security +
+  https://www.withgrid.com/post/grid-is-now-soc-2-type-ii-compliant
+description: >-
+  Grid publishes no OpenAPI, no AsyncAPI, no GraphQL SDL and no REST reference, so most
+  API-shaped conformance checks below are recorded false for the honest reason that there is
+  nothing to conform TO — not because a contract was inspected and found wanting. The two
+  standards Grid does demonstrably implement are the Model Context Protocol (a real remote
+  MCP server) and SAML 2.0 enterprise SSO, plus a completed SOC 2 Type II audit announced on
+  its own blog.
+standards:
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: >-
+      Official remote MCP server over streamable HTTP. Grid's own install instruction is
+      `claude mcp add --transport http --scope user grid <MCP URL>`, and Grid documents
+      Claude Code, Claude/Cowork, ChatGPT and Cursor as supported clients.
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+    caveat: >-
+      Protocol version is not published, and tools/list could not be called because the
+      endpoint is tenant-issued behind the app login, so conformance is asserted from
+      documentation rather than from a live handshake.
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: >-
+      OAuth is the documented and preferred authentication method for the MCP server across
+      every client; a bearer access token is an explicit fallback.
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - id: rfc8414-oauth-authorization-server-metadata
+    name: OAuth 2.0 Authorization Server Metadata
+    conforms: false
+    evidence: >-
+      /.well-known/oauth-authorization-server returns 404 on api.saasgrid.com and an SPA
+      HTML shell (not metadata) on app.withgrid.com and app.saasgrid.com.
+    source: well-known/grid-well-known.yml
+  - id: rfc9728-oauth-protected-resource-metadata
+    name: OAuth 2.0 Protected Resource Metadata
+    conforms: false
+    evidence: >-
+      No /.well-known/oauth-protected-resource document is served on any reachable Grid
+      host, so an MCP client cannot discover the authorization server from the resource.
+    source: well-known/grid-well-known.yml
+  - id: openid-connect
+    name: OpenID Connect
+    conforms: false
+    evidence: >-
+      Grid explicitly instructs ChatGPT admins to UNCHECK "OIDC enabled" in Advanced OAuth
+      settings, and no /.well-known/openid-configuration document is served.
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - id: saml2
+    name: SAML 2.0
+    conforms: true
+    evidence: >-
+      Enterprise SSO documented for Okta and Microsoft Entra ID using SAML artefacts —
+      Single Sign-On URL, Audience URI (SP Entity ID), Assertion Consumer Service URL,
+      Identifier (Entity ID), and IdP federation metadata exchange.
+    source: https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid
+  - id: scim
+    name: SCIM 2.0
+    conforms: false
+    evidence: >-
+      No SCIM or user-provisioning article exists in the knowledge base; users are invited
+      manually per https://help.saasgrid.com/articles/8303539837-inviting-users-to-saasgrid.
+  - id: openapi
+    name: OpenAPI
+    conforms: false
+    evidence: >-
+      No OpenAPI, Swagger, or api-docs document found on withgrid.com, www.withgrid.com,
+      app.withgrid.com, api.saasgrid.com, saasgridapi.com, app.saasgrid.com or
+      help.saasgrid.com. api.saasgrid.com returns a plain 404 for /openapi.json,
+      /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /docs and /redoc.
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: >-
+      No event, streaming or webhook surface is documented anywhere in the knowledge base.
+      Grid pulls data from source systems on a schedule and pushes to CRM as a product
+      workflow, not as a subscribable event contract.
+  - id: graphql
+    name: GraphQL
+    conforms: false
+    evidence: /graphql returns 404 on api.saasgrid.com; no GraphQL surface is documented.
+  - id: rfc9457-problem-details
+    name: RFC 9457 Problem Details
+    conforms: false
+    evidence: No error reference or error envelope is published.
+  - id: idempotency
+    name: Idempotency keys
+    conforms: false
+    evidence: >-
+      No idempotency header or semantics are documented. Grid's MCP server is read-only, so
+      the write path where idempotency matters is not exposed at all.
+  - id: rfc8594-sunset-header
+    name: RFC 8594 Sunset header / deprecation policy
+    conforms: false
+    evidence: No versioning, deprecation, or sunset policy is published.
+  - id: soc2-type-ii
+    name: SOC 2 Type II
+    conforms: true
+    evidence: >-
+      "Grid is pleased to announce that we have successfully completed our SOC 2 Type II
+      audit!" — company blog post. Auditor and report date are not named; the report is
+      obtained by contacting Grid.
+    source: https://www.withgrid.com/post/grid-is-now-soc-2-type-ii-compliant
+  - id: iso-27001
+    name: ISO/IEC 27001
+    conforms: false
+    evidence: Not claimed on the security page or anywhere else on the site.
+  - id: gdpr
+    name: GDPR
+    conforms: unknown
+    evidence: >-
+      Not addressed on the security page. A privacy policy exists at
+      https://www.withgrid.com/privacy-policy but no GDPR/DPA compliance statement or
+      subprocessor list is published.
+  - id: hipaa
+    name: HIPAA
+    conforms: false
+    evidence: Not claimed. Not applicable to a SaaS financial-metrics product.
+  - id: pci-dss
+    name: PCI DSS
+    conforms: false
+    evidence: >-
+      Not claimed. Grid reads billing data from Stripe, QuickBooks, Xero, NetSuite and Sage
+      Intacct rather than processing card payments itself.

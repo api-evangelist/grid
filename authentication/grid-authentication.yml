@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://help.saasgrid.com/articles/5945378492-grid-mcp +
+  https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid
+docs:
+  - https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid
+description: >-
+  DERIVED FROM DOCS, NOT FROM A SPEC — Grid publishes no OpenAPI, so there is no
+  securitySchemes block to read. Everything below comes from Grid's own help-center articles.
+
+  Grid has two authentication stories and they are not the same surface. The AGENT surface
+  (the remote MCP server) authenticates with OAuth 2.0, with a long-lived bearer access token
+  offered only as a documented fallback for Claude Code. The HUMAN surface (the Grid web app)
+  supports SAML 2.0 enterprise SSO against Okta and Microsoft Entra ID, configured by
+  exchanging metadata with Grid support rather than self-serve in the app.
+
+  There is no API key programme. No article in Grid's knowledge base documents issuing,
+  rotating, scoping or revoking an API credential for a REST API, because there is no public
+  REST API.
+summary:
+  types:
+    - oauth2
+    - http-bearer
+    - saml2
+  api_key_programme: false
+  self_serve_credentials: partial
+  self_serve_note: >-
+    MCP OAuth and MCP access tokens are self-serve from https://app.withgrid.com/mcp-auth
+    once signed in, but enabling Grid as a connector in Claude or ChatGPT requires an org
+    admin, and SAML SSO requires a support-mediated metadata exchange.
+schemes:
+  - name: mcp-oauth
+    type: oauth2
+    surface: MCP server (agent)
+    preferred: true
+    description: >-
+      "Use OAuth wherever it's supported." The OAuth flow is completed inside the MCP client
+      — /mcp in Claude Code, Connect in claude.ai settings, or the App authentication step in
+      the ChatGPT admin console.
+    flow: authorization_code
+    flow_note: >-
+      Inferred from the interactive per-user consent flow the docs describe; Grid does not
+      name the grant type and publishes no RFC 8414 authorization-server metadata, so the
+      flow is not machine-confirmable.
+    authorization_server: null
+    authorization_server_note: >-
+      Not published. /.well-known/oauth-authorization-server 404s on api.saasgrid.com and
+      returns an SPA HTML shell (not metadata) on app.withgrid.com. See
+      well-known/grid-well-known.yml.
+    scopes: []
+    scopes_note: >-
+      No scopes are published. The server is documented as read-only in the aggregate, but
+      no per-scope or per-resource permission model is described.
+    oidc_note: >-
+      Grid explicitly instructs ChatGPT admins to open Advanced OAuth settings and UNCHECK
+      "OIDC enabled" — the authorization server is OAuth 2.0 only and does not present a
+      working OIDC layer to that client.
+    sources:
+      - https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - name: mcp-access-token
+    type: http
+    scheme: bearer
+    surface: MCP server (agent)
+    preferred: false
+    description: >-
+      Fallback for Claude Code only. The token is generated at
+      https://app.withgrid.com/mcp-auth and passed as a static header:
+      --header "Authorization: Bearer <Your token>".
+    header: Authorization
+    format: Bearer <token>
+    expiry: null
+    expiry_note: No lifetime, rotation policy, or revocation procedure is documented.
+    sources:
+      - https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - name: enterprise-sso
+    type: saml2
+    surface: Grid web application (human)
+    description: >-
+      SAML 2.0 single sign-on. Grid supplies a Single Sign-On URL and an Audience URI
+      (SP Entity ID); the customer returns their IdP metadata URL to the Grid point of
+      contact, who completes the connection.
+    identity_providers:
+      - name: Okta
+        exchange: >-
+          Grid provides Single Sign-On URL + Audience URI (SP Entity ID); customer sends the
+          Okta metadata URL to Grid.
+      - name: Microsoft Entra ID (Azure AD)
+        exchange: >-
+          Grid provides the Reply URL (Assertion Consumer Service URL) + Identifier
+          (Entity ID); customer sends the App Federation Metadata URL to Grid support.
+    self_serve: false
+    self_serve_note: >-
+      Configuration is not available in-app; it requires a support-mediated metadata
+      exchange with a named Grid point of contact.
+    identity_platform: null
+    identity_platform_note: >-
+      Grid does not name an underlying identity vendor (WorkOS, Auth0, Okta Customer
+      Identity) in its documentation.
+    sources:
+      - https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid
+authorization:
+  model: role-based
+  roles_doc: https://help.saasgrid.com/articles/7313064116-user-roles
+  note: >-
+    Grid documents user roles for the web application. No mapping between web-app roles and
+    what the MCP server can read on a user's behalf is published.

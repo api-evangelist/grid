@@ -1,0 +1,47 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Grid
+providerId: grid
+generated: '2026-08-13'
+method: searched
+created: '2026-08-13'
+modified: '2026-08-13'
+limit_count: 0
+description: >-
+  ZERO PUBLISHED LIMITS — an honest zero, not an omission. Grid ships one programmatic
+  surface, an OAuth-gated remote MCP server (mcp/grid-mcp.yml), and publishes no rate-limit
+  documentation for it: no requests-per-second or per-minute figure, no per-tenant or
+  per-token quota, no burst allowance, no documented 429 behaviour, and no response headers.
+  The MCP setup article covers installation and capabilities only. The pricing page attaches
+  no call quota to either tier. There is no developer portal, no API reference, and no
+  OpenAPI in which limits could be declared.
+
+  Because the MCP endpoint is issued per tenant behind the app login, no limit could be
+  observed on a live unauthenticated response either — an agent integrating with Grid today
+  cannot learn the throttle from the docs OR from the wire until it holds credentials.
+sources:
+  - url: https://help.saasgrid.com/articles/5945378492-grid-mcp
+    status: 200
+    note: MCP setup and capabilities article — no limits, no headers, no 429 semantics.
+  - url: https://help.saasgrid.com/llms.txt
+    status: 200
+    note: >-
+      Complete 121-line index of the Grid knowledge base. No article on rate limits, quotas,
+      throttling, API keys, or a developer reference exists in it.
+  - url: https://www.withgrid.com/pricing
+    status: 200
+    note: No call quota, overage rate, or request ceiling on either tier.
+headers:
+  requestId: null
+  rateLimitLimit: null
+  rateLimitRemaining: null
+  rateLimitReset: null
+  retryAfter: null
+  note: >-
+    No rate-limit response headers are documented. Not recorded as absent-on-the-wire —
+    recorded as undocumented, because the surface could not be reached anonymously.
+responseCodes:
+  throttled: null
+  note: The status code returned on exhaustion is not documented.
+limits: []

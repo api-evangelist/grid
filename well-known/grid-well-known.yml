@@ -1,0 +1,197 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  probed /.well-known/ on withgrid.com, www.withgrid.com, app.withgrid.com, api.saasgrid.com,
+  app.saasgrid.com and help.saasgrid.com
+result: no-real-documents
+notes: >-
+  NOTHING WAS FOUND. No /.well-known/ path on any Grid host returned a real discovery
+  document, so NO WellKnown or SecurityTxt pointer is emitted in apis.yml — this file
+  records an absence, not a presence.
+
+  Two distinct failure shapes are recorded below and must not be confused.
+  (1) withgrid.com / www.withgrid.com are Webflow-hosted and answer every /.well-known/*
+  path with HTTP 404 and the body "Invalid .well-known request" — a genuine, unambiguous
+  miss. (2) app.withgrid.com and app.saasgrid.com are single-page apps whose catch-all
+  serves index.html with HTTP 200 for paths that do not exist, including
+  /.well-known/openid-configuration, /.well-known/oauth-authorization-server and
+  /.well-known/api-catalog. Those 200s are HTML shells, NOT documents, and are marked
+  real: false. Crediting them would be the soft-200 false-credit failure mode.
+
+  api.saasgrid.com (CNAME saasgridapi.com) is the only host that behaves like an API
+  origin — it returns a plain, honest 404 page for every path including the root — and it
+  serves no well-known document either. Grid's MCP server is OAuth-authenticated
+  (mcp/grid-mcp.yml) but publishes no anonymous RFC 8414 authorization-server metadata or
+  RFC 9728 protected-resource metadata at any host we could reach, because the MCP URL
+  itself is issued per tenant behind the app login.
+hosts:
+  - host: https://withgrid.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        real: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real: false
+      - path: /.well-known/agent.json
+        status: 404
+        real: false
+      - path: /llms.txt
+        status: 404
+        real: false
+  - host: https://www.withgrid.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        real: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real: false
+      - path: /.well-known/agent.json
+        status: 404
+        real: false
+      - path: /robots.txt
+        status: 200
+        real: true
+        note: 'User-agent: * Allow: / — sitemap at https://www.withgrid.com/sitemap.xml'
+  - host: https://app.withgrid.com
+    note: SPA catch-all; every 200 below is index.html, not a document.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 200
+        real: false
+        note: SPA index.html shell, not OpenID Connect discovery metadata
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        real: false
+        note: SPA index.html shell, not RFC 8414 metadata
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        real: false
+        note: SPA index.html shell, not RFC 9728 metadata
+      - path: /.well-known/api-catalog
+        status: 200
+        real: false
+        note: SPA index.html shell
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real: false
+      - path: /.well-known/agent.json
+        status: 404
+        real: false
+  - host: https://app.saasgrid.com
+    note: SPA catch-all, same build as app.withgrid.com.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 200
+        real: false
+        note: SPA index.html shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        real: false
+        note: SPA index.html shell
+      - path: /.well-known/api-catalog
+        status: 200
+        real: false
+        note: SPA index.html shell
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real: false
+      - path: /.well-known/agent.json
+        status: 404
+        real: false
+  - host: https://api.saasgrid.com
+    note: >-
+      Real API origin (CNAME saasgridapi.com, AWS). Returns a plain "Not Found" page for
+      every path including /, so the 404s here are trustworthy negatives.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        real: false
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real: false
+      - path: /.well-known/agent.json
+        status: 404
+        real: false
+  - host: https://help.saasgrid.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        real: false
+      - path: /.well-known/openid-configuration
+        status: 404
+        real: false
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        real: false
+      - path: /.well-known/api-catalog
+        status: 404
+        real: false
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        real: false
+      - path: /.well-known/agent-card.json
+        status: 404
+        real: false
+      - path: /.well-known/agent.json
+        status: 404
+        real: false
+      - path: /llms.txt
+        status: 200
+        real: true
+        file: ../llms/grid-llms.txt
+        note: >-
+          The one real machine-readable document Grid serves anywhere. Pylon-generated
+          knowledge-base index, 121 lines, unchanged since the 2026-07-19 capture.

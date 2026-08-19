@@ -1,0 +1,122 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+description: >-
+  Grid operates an official REMOTE MCP server over the streamable-HTTP transport. It is the
+  only programmatic surface Grid publishes — there is no public REST API, no OpenAPI, and no
+  developer portal. The server is READ-ONLY: Grid's own documentation states it "cannot modify
+  data, edit charts or dashboards, or write back to your source systems." OAuth is the
+  documented and preferred authentication method on every client; a bearer access token is
+  offered only as a fallback for Claude Code. The MCP URL is TENANT-SPECIFIC and is issued
+  from an authenticated page at https://app.withgrid.com/mcp-auth, so no single public
+  endpoint URL exists to record or probe.
+server:
+  name: grid
+  transport: http
+  url: null
+  url_note: >-
+    Per-tenant. Grid instructs each customer to "Copy your MCP URL from
+    https://app.withgrid.com/mcp-auth" — that page is behind the app login, so the endpoint
+    is not publicly enumerable. No URL is recorded here rather than guessing one.
+  auth: oauth2
+  auth_fallback: bearer-token
+  auth_fallback_note: >-
+    "Use OAuth wherever it's supported. Access tokens are a fallback for Claude Code."
+    Tokens are generated at https://app.withgrid.com/mcp-auth.
+  read_only: true
+deployment:
+  mode: remote
+  endpoint: null
+  endpoint_note: >-
+    remote/streamable-HTTP confirmed from the provider's own install instructions
+    (`claude mcp add --transport http --scope user grid <MCP URL>`), but the URL itself is
+    issued per tenant behind the app login. mode is remote, not none — a hosted server
+    demonstrably exists; only its address is gated.
+  install: null
+  package: null
+  auth: oauth
+  verified: searched
+  checked: '2026-08-13'
+  source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+tools: []
+tools_note: >-
+  NOT RECORDED. `tools/list` could not be called: the endpoint is tenant-issued and
+  OAuth-gated, and no anonymous MCP host answered on withgrid.com or saasgrid.com
+  (mcp.withgrid.com and mcp.saasgrid.com do not resolve; api.saasgrid.com/mcp returns 404;
+  app.withgrid.com is an SPA that answers 200 with HTML for every path). Grid's docs
+  describe capabilities in prose but never name a tool, so no tool names are listed here
+  rather than inventing them. Live schemas require authenticated introspection with a
+  tenant MCP URL.
+capabilities:
+  - id: explore-records
+    title: Explore your data
+    description: >-
+      Look up customers, opportunities, subscriptions, and invoices. Search by name or
+      keyword. Drill into line items, contract dates, attributes, and revenue history.
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - id: run-saved-charts-reports
+    title: Run charts, reports, and dashboards
+    description: >-
+      Execute any saved chart or report and get the underlying time series back, including
+      the formula breakdown (e.g. New Sales + Expansion − Churn for Net New ARR).
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - id: adhoc-metrics-analysis
+    title: Ad-hoc analysis
+    description: >-
+      Ask metrics questions in plain English; the MCP picks the calculation, groupings, and
+      filters, runs it on the grid, and returns the result. No saved chart required.
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+  - id: search-help-center
+    title: Search the help center
+    description: >-
+      Search Grid's documentation for metric definitions and feature behaviour so answers
+      reflect the current product.
+    source: https://help.saasgrid.com/articles/5945378492-grid-mcp
+clients:
+  - name: Claude Code
+    method: oauth
+    install: claude mcp add --transport http --scope user grid <MCP URL>
+    install_token_fallback: >-
+      claude mcp add --transport http --scope user grid <MCP URL> --header "Authorization:
+      Bearer <Your token>"
+  - name: Claude / Cowork
+    method: oauth
+    admin_required: true
+    note: >-
+      An org admin must add Grid as a custom web connector at
+      https://claude.ai/admin-settings/connectors before users can connect at
+      https://claude.ai/settings/connectors.
+  - name: ChatGPT
+    method: oauth
+    admin_required: true
+    note: >-
+      An admin creates an App at https://chatgpt.com/admin/ca with the Grid MCP URL,
+      authenticates with OAuth, and must UNCHECK "OIDC enabled" under Advanced OAuth
+      settings before publishing to the organization.
+  - name: Cursor
+    method: oauth
+    note: Named in Grid's docs as a supported MCP-compatible client.
+probes:
+  - url: https://mcp.withgrid.com/mcp
+    method: POST tools/list
+    status: 000
+    result: DNS does not resolve
+  - url: https://mcp.saasgrid.com/
+    method: dns
+    status: 000
+    result: DNS does not resolve
+  - url: https://api.saasgrid.com/mcp
+    method: POST tools/list
+    status: 404
+    result: real 404 from the app backend (api.saasgrid.com CNAMEs to saasgridapi.com)
+  - url: https://app.withgrid.com/mcp
+    method: POST tools/list
+    status: 200
+    result: >-
+      NOT AN MCP ENDPOINT — SPA catch-all returning index.html for every path. Recorded as a
+      miss.
+  - url: https://app.withgrid.com/mcp-auth
+    method: GET
+    status: 200
+    result: SPA shell; the real page requires an authenticated session.

@@ -1,0 +1,95 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Grid
+providerId: grid
+generated: '2026-08-13'
+method: searched
+source: https://www.withgrid.com/pricing
+created: '2026-08-13'
+modified: '2026-08-13'
+plan_count: 2
+tags:
+  - SaaS Metrics
+  - Revenue Operations
+  - Billing
+  - Financial Reporting
+description: >-
+  Grid publishes a two-tier plan page. Starter is genuinely free and self-serve for companies
+  under $1M ARR; Growth is a "Talk to Sales" tier with no published price. Neither tier is
+  priced against API or MCP usage — Grid sells seats/workspaces, and the MCP server
+  (mcp/grid-mcp.yml) is a product feature rather than a metered surface. No API call quotas,
+  overage rates, or request limits are attached to either tier anywhere on the pricing page.
+sources:
+  - url: https://www.withgrid.com/pricing
+    status: 200
+  - url: https://www.withgrid.com/platform/integrations
+    status: 200
+plans:
+  - id: grid-starter
+    name: Starter
+    type: free
+    price: 0
+    currency: USD
+    billingPeriod: null
+    billingPeriod_note: >-
+      Published as "$0 / Free" with no stated billing period. Grid does not state whether the
+      free tier is time-limited; it is presented as free for companies under $1M ARR.
+    eligibility: Companies under $1M ARR
+    quota:
+      api_calls: null
+      api_calls_note: No API or MCP call quota is published for this tier.
+      viewers: unlimited
+    overage: null
+    overage_note: No overage rate is published.
+    limits:
+      - name: Eligibility ceiling
+        value: $1M ARR
+        note: Stated as the qualifying threshold for the free tier.
+    features:
+      - ARR and revenue metrics
+      - Retention metrics
+      - Expense metrics
+      - Headcount insights
+      - Custom shareable dashboards
+      - Unlimited viewers
+    integrations:
+      - Files (Google Sheets / Excel)
+      - Stripe
+      - QuickBooks
+      - Xero
+  - id: grid-growth
+    name: Growth
+    type: custom
+    price: null
+    price_note: >-
+      Not published. The pricing page shows "Talk to Sales" in place of a figure, so the
+      real cost of the tier that carries Salesforce, NetSuite and Sage Intacct is not
+      knowable without a sales conversation.
+    currency: null
+    billingPeriod: null
+    eligibility: Growth-stage companies
+    quota:
+      api_calls: null
+      api_calls_note: No API or MCP call quota is published for this tier.
+    overage: null
+    limits: []
+    features:
+      - Everything in Starter
+      - Sales pipeline metrics
+      - Renewals metrics
+      - Total contract value metrics
+      - Product-level insights
+      - Bookings and billings reconciliation
+      - Guided onboarding
+      - Dedicated technical consultant
+    integrations:
+      - HubSpot
+      - Salesforce
+      - NetSuite
+      - Sage Intacct
+notes: >-
+  MCP access is not called out as a paid add-on or a tier-gated feature on the pricing page.
+  Grid's own MCP documentation says an admin must enable Grid as a connector for Claude,
+  ChatGPT and enterprise deployments before individual users can connect, which implies an
+  administered workspace but stops short of naming a required tier.

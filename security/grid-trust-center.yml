@@ -1,0 +1,86 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.withgrid.com/security
+trust_center:
+  published: false
+  published_note: >-
+    There is no trust centre. trust.withgrid.com and security.withgrid.com do not resolve;
+    /trust returns 404. What Grid publishes is a single marketing-page-shaped /security page
+    plus one blog post announcing a completed audit. Recorded here because the certification
+    claim is real and named, not because a trust programme is published.
+  urls:
+    - url: https://www.withgrid.com/security
+      status: 200
+      title: Security
+    - url: https://www.withgrid.com/post/grid-is-now-soc-2-type-ii-compliant
+      status: 200
+      title: Grid is now SOC 2 Type II compliant
+    - url: https://www.withgrid.com/trust
+      status: 404
+      title: 'no trust centre'
+certifications:
+  - name: SOC 2 Type II
+    status: completed
+    scope: >-
+      Grid's announcement describes the SOC 2 framework as covering security, availability,
+      processing integrity, confidentiality and privacy, but does not state which trust
+      services criteria were in scope for its own audit.
+    auditor: null
+    auditor_note: Not named.
+    report_date: null
+    report_date_note: >-
+      Not stated in the announcement. The post is undated on the page as rendered.
+    report_access: >-
+      No self-serve request flow. The post directs readers to book a consultation at
+      https://www.withgrid.com/request-demo — a sales form, not a document request.
+    evidence: >-
+      "Grid is pleased to announce that we have successfully completed our SOC 2 Type II
+      audit! This achievement underscores our dedication to maintaining the highest
+      standards of data security, availability, and confidentiality for our customers."
+    source: https://www.withgrid.com/post/grid-is-now-soc-2-type-ii-compliant
+security_program:
+  hosting: Amazon Web Services
+  encryption_at_rest: true
+  encryption_in_transit: true
+  key_management: AWS Key Management Service (KMS)
+  network_isolation: >-
+    "we only allow access to our data through VPCs"
+  aws_security_services:
+    - KMS
+    - GuardDuty
+    - Inspector
+  deployment: Containerised on AWS managed services
+  static_analysis: >-
+    "high-quality static analysis tooling provided by Github" run during development
+  vendor_management: >-
+    Grid states that "all vendors that have access to any data are SOC 2 certified". Note
+    this is a claim about VENDORS, and is separate from Grid's own SOC 2 Type II audit,
+    which is announced on the blog rather than on the security page.
+  third_party_penetration_testing: null
+  third_party_penetration_testing_note: Not mentioned.
+  subprocessor_list_published: false
+  incident_response_published: false
+  sso_available: true
+  sso_note: >-
+    SAML 2.0 SSO with Okta and Microsoft Entra ID —
+    https://help.saasgrid.com/articles/9859006764-setting-up-sso-for-saasgrid
+evidence_documents_public: false
+vulnerability_disclosure:
+  published: false
+  security_contact: null
+  security_txt: false
+  bug_bounty: null
+  note: >-
+    NO DISCLOSURE CHANNEL EXISTS. /.well-known/security.txt returns 404 on every Grid host
+    (withgrid.com, www.withgrid.com, app.withgrid.com, api.saasgrid.com, app.saasgrid.com,
+    help.saasgrid.com). The /security page publishes no security@ address and no reporting
+    instructions. No programme was found on HackerOne, Bugcrowd or Intigriti by
+    probe-security-programs.py, which returned vdp=none. A researcher who finds a bug in
+    Grid has no published route to report it. NO Security or VulnerabilityDisclosure
+    pointer is emitted in apis.yml, because none is earned.
+note: >-
+  The security posture and the certification are published in two different places and only
+  one of them is linked from the site navigation. The /security page — the page a buyer's
+  security team will actually open — never mentions Grid's own SOC 2 Type II. That claim
+  lives only in a blog post reachable through the sitemap. A reader who checks /security
+  will conclude that only Grid's vendors are SOC 2 certified.

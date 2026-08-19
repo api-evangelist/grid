@@ -1,0 +1,82 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org, crates.io, api.github.com/orgs/SaaSGrid,
+  https://help.saasgrid.com/llms.txt, https://www.withgrid.com/pricing
+package_count: 0
+official_count: 0
+description: >-
+  ZERO PACKAGES — no first-party client library, SDK, or CLI exists in any public registry,
+  and none is referenced from Grid's documentation. This is consistent with the rest of the
+  profile: Grid publishes no REST API, so there is nothing for an SDK to wrap. Its one
+  programmatic surface is a REMOTE MCP server (mcp/grid-mcp.yml) reached over HTTP with
+  OAuth — a deployment shape that requires no installed package on the consumer side, which
+  is why the absence here is a design consequence rather than an abandonment signal.
+packages: []
+searches:
+  - registry: npm
+    query: saasgrid
+    url: https://registry.npmjs.org/-/v1/search?text=saasgrid
+    status: 200
+    results: 0
+  - registry: npm
+    query: withgrid
+    url: https://registry.npmjs.org/-/v1/search?text=withgrid
+    status: 200
+    results: 1
+    note: >-
+      Single result `react-graphical-ui`, an unrelated third-party SVG chart component
+      library by another publisher. Not Grid.
+  - registry: npm
+    query: '@saasgrid/mcp'
+    url: https://registry.npmjs.org/@saasgrid%2fmcp
+    status: 404
+    results: 0
+  - registry: npm
+    query: '@withgrid/mcp'
+    url: https://registry.npmjs.org/@withgrid%2fmcp
+    status: 404
+    results: 0
+  - registry: pypi
+    query: saasgrid
+    url: https://pypi.org/pypi/saasgrid/json
+    status: 404
+    results: 0
+  - registry: pypi
+    query: withgrid
+    url: https://pypi.org/pypi/withgrid/json
+    status: 404
+    results: 0
+  - registry: rubygems
+    query: saasgrid
+    url: https://rubygems.org/api/v1/gems/saasgrid.json
+    status: 404
+    results: 0
+  - registry: crates.io
+    query: saasgrid
+    url: https://crates.io/api/v1/crates/saasgrid
+    status: 404
+    results: 0
+  - registry: github
+    query: org SaaSGrid
+    url: https://api.github.com/orgs/SaaSGrid/repos
+    status: 200
+    results: 0
+    note: >-
+      github.com/SaaSGrid is Grid's real organisation (contact hello@saasgrid.com, created
+      2020-10-20, last updated 2024-06-24) but publishes ZERO public repositories. There is
+      no open-source surface to harvest a package, spec, or .proto from.
+  - registry: docs
+    query: Grid knowledge base index
+    url: https://help.saasgrid.com/llms.txt
+    status: 200
+    results: 0
+    note: >-
+      All 121 lines checked. No article mentions an SDK, client library, CLI, package, or
+      API key. The only programmatic article is "Connect to Grid MCP".
+search_caveat: >-
+  The bare term "grid" is unusable as a registry query — it collides with CSS grid layouts,
+  data-grid components, and power-grid projects across every ecosystem — so searches were
+  anchored on the unambiguous brand strings "saasgrid" and "withgrid" plus the scoped
+  package names an MCP vendor would publish. A false positive here would be worse than the
+  honest zero recorded above.
