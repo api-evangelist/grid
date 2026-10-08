@@ -60,6 +60,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: RateLimits
+  url: rate-limits/grid-rate-limits.yml
 - type: Website
   url: https://withgrid.com
 - type: Documentation
