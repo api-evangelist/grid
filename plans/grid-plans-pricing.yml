@@ -93,3 +93,23 @@ notes: >-
   Grid's own MCP documentation says an admin must enable Grid as a connector for Claude,
   ChatGPT and enterprise deployments before individual users can connect, which implies an
   administered workspace but stops short of naming a required tier.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units: []
+  plans:
+  - name: Starter
+    access: free
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Growth
+    access: negotiated
+    model: negotiated
+    model_how: stated
+    units: []
+    periods: []
